@@ -49,7 +49,7 @@ struct data_grid
 
 	data_grid(TGridDataType init_value);
 
-	static int convert_xy_to_index(tile_coordinate&& cord);
+	static int convert_xy_to_index(const tile_coordinate& cord);
 
 	static tile_coordinate convert_index_to_xy(int index);
 
@@ -69,7 +69,7 @@ data_grid<TSize, TGridDataType>::data_grid(TGridDataType init_value)
 }
 
 template <int TSize, typename TGridDataType>
-int data_grid<TSize, TGridDataType>::convert_xy_to_index(tile_coordinate&& cord)
+int data_grid<TSize, TGridDataType>::convert_xy_to_index(const tile_coordinate& cord)
 {
 	return (cord.y * width) + cord.x;
 }
@@ -88,7 +88,8 @@ tile_coordinate data_grid<TSize, TGridDataType>::convert_index_to_xy(int index)
 template <int TSize, typename TGridDataType>
 TGridDataType& data_grid<TSize, TGridDataType>::operator[](tile_coordinate&& cord)
 {
-	return this[convert_xy_to_index(cord)];
+	int index = convert_xy_to_index(cord);
+	return (*this)[index];
 }
 
 template <int TSize, typename TGridDataType>

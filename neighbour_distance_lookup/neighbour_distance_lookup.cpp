@@ -20,12 +20,13 @@ int main(int argc, char* argv[])
     //struct to hold items in open queue
     struct open_tile_entry: std::tuple<float,tile_coordinate>
     {
-        constexpr open_tile_entry(float priority,tile_coordinate coorndinate)
+        //i want to set the tuple to these values passed into the constructor
+        constexpr open_tile_entry(float priority,tile_coordinate coorndinate):std::tuple<float, tile_coordinate>(priority,coorndinate){} 
+
+        auto operator<=>(const open_tile_entry& other) const
         {
-            
-            priority,coorndinate
-        } { }
-        auto operator<=>(const open_tile_entry&) const = default;
+           return std::get<0>(*this) <=> std::get<0>(other);
+        }
         
     };
     
