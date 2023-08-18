@@ -15,13 +15,26 @@
 #define ctz(x) _tzcnt_u64(x) 
 #endif
 
+template<uint32_t TLookupSize>
+static std::array<float, TLookupSize* TLookupSize * 2> calculate_dist_to_neighbour()
+{
+    std::array<float, TLookupSize* TLookupSize>  out_array = {};
+
+    for (int iy = 0; iy < TLookupSize; ++iy)
+    {
+        for (int ix = 0; ix < TLookupSize; ++ix)
+        {
+            out_array._Elems[(iy * TLookupSize) + ix] =  sqrtf(static_cast<float>((ix * ix) + (iy * iy)));
+        }
+    }
+}
 
 template<uint32_t TLookupSize>
 class distance_lookup
 {
     static constexpr size_t total_lookup_array_size = TLookupSize * TLookupSize * 2;
     
-    static std::array<float,total_lookup_array_size> dist_to_neighbour;
+    static std::array<float,total_lookup_array_size> dist_to_neighbour = calculate_dist_to_neighbour();
 public:
     static float get_neighbour_distance(
         const tile_coordinate& from,
