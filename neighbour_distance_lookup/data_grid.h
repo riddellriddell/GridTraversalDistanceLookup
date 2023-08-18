@@ -37,6 +37,32 @@ struct neighbour_address_offset
 			
 	constexpr static std::array<ToffsetType, static_cast<size_t>(NEIGHBOUR_DIRECTIONS::COUNT)> wrap_around_offset_for_direction =
 		{{wrap_left, wrap_up, wrap_right, wrap_down, wrap_up_left, wrap_up_right, wrap_down_left, wrap_down_right}};
+
+
+
+	static constexpr ToffsetType x_left = static_cast<ToffsetType>(-1);											//left
+	static constexpr ToffsetType x_up = static_cast<ToffsetType>(0);											//up
+	static constexpr ToffsetType x_right = static_cast<ToffsetType>(1);											//right
+	static constexpr ToffsetType x_down = static_cast<ToffsetType>(0);											//down
+	static constexpr ToffsetType x_up_left = static_cast<ToffsetType>(-1);										//up left
+	static constexpr ToffsetType x_up_right = static_cast<ToffsetType>(1);       								//up right
+	static constexpr ToffsetType x_down_left = static_cast<ToffsetType>(-1);									//down left
+	static constexpr ToffsetType x_down_right = static_cast<ToffsetType>(1);									//down right
+
+	constexpr static std::array<ToffsetType, static_cast<size_t>(NEIGHBOUR_DIRECTIONS::COUNT)> x_offset_for_direction =
+	{ {x_left, x_up, x_right, x_down, x_up_left, x_up_right, x_down_left, x_down_right} };
+
+	static constexpr ToffsetType y_left = static_cast<ToffsetType>(0);											//left
+	static constexpr ToffsetType y_up = static_cast<ToffsetType>(-1);											//up
+	static constexpr ToffsetType y_right = static_cast<ToffsetType>(0);											//right
+	static constexpr ToffsetType y_down = static_cast<ToffsetType>(1);											//down
+	static constexpr ToffsetType y_up_left = static_cast<ToffsetType>(-1);										//up left
+	static constexpr ToffsetType y_up_right = static_cast<ToffsetType>(-1);       								//up right
+	static constexpr ToffsetType y_down_left = static_cast<ToffsetType>(1);										//down left
+	static constexpr ToffsetType y_down_right = static_cast<ToffsetType>(1);									//down right
+
+	constexpr static std::array<ToffsetType, static_cast<size_t>(NEIGHBOUR_DIRECTIONS::COUNT)> y_offset_for_direction =
+	{ {y_left, y_up, y_right, y_down, y_up_left, y_up_right, y_down_left, y_down_right} };
 };
 
 template<int TSize, typename TGridDataType>
@@ -53,7 +79,11 @@ struct data_grid
 
 	static tile_coordinate convert_index_to_xy(int index);
 
-	TGridDataType& operator [] (tile_coordinate&& cord);
+	static bool is_valid(const tile_coordinate& cord);
+
+	//TGridDataType& operator [] (tile_coordinate& cord);
+
+	TGridDataType& operator [] (const tile_coordinate& cord);
 
 	TGridDataType& operator [] (int index);
 	
@@ -85,12 +115,31 @@ tile_coordinate data_grid<TSize, TGridDataType>::convert_index_to_xy(int index)
 	return out_cord;	
 }
 
+template<int TSize, typename TGridDataType>
+inline bool data_grid<TSize, TGridDataType>::is_valid(const tile_coordinate& cord)
+{
+	if (cord.x > width || cord.x < 0 || cord.y > width || cord.y < 0)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 template <int TSize, typename TGridDataType>
-TGridDataType& data_grid<TSize, TGridDataType>::operator[](tile_coordinate&& cord)
+TGridDataType& data_grid<TSize, TGridDataType>::operator[](const tile_coordinate& cord)
 {
 	int index = convert_xy_to_index(cord);
 	return (*this)[index];
 }
+
+
+//template <int TSize, typename TGridDataType>
+//TGridDataType& data_grid<TSize, TGridDataType>::operator[](tile_coordinate&& cord)
+//{
+//	int index = convert_xy_to_index(cord);
+//	return (*this)[index];
+//}
 
 template <int TSize, typename TGridDataType>
 TGridDataType& data_grid<TSize, TGridDataType>::operator[](int index)
