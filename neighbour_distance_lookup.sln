@@ -1,22 +1,43 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "neighbour_distance_lookup", "neighbour_distance_lookup\neighbour_distance_lookup.vcxproj", "{018BA6FB-16C4-4611-B56E-429595BD515D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
+		MinSizeRel|Win32 = MinSizeRel|Win32
+		MinSizeRel|x64 = MinSizeRel|x64
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
+		RelWithDebInfo|Win32 = RelWithDebInfo|Win32
+		RelWithDebInfo|x64 = RelWithDebInfo|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Debug|Win32.ActiveCfg = Debug|Win32
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Debug|Win32.Build.0 = Debug|Win32
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Debug|x64.ActiveCfg = Debug|x64
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Debug|x64.Build.0 = Debug|x64
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.MinSizeRel|Win32.ActiveCfg = Release|Win32
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.MinSizeRel|Win32.Build.0 = Release|Win32
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.MinSizeRel|x64.ActiveCfg = Release|x64
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.MinSizeRel|x64.Build.0 = Release|x64
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Release|Win32.ActiveCfg = Release|Win32
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Release|Win32.Build.0 = Release|Win32
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Release|x64.ActiveCfg = Release|x64
 		{018BA6FB-16C4-4611-B56E-429595BD515D}.Release|x64.Build.0 = Release|x64
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.RelWithDebInfo|Win32.Build.0 = Release|Win32
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.RelWithDebInfo|x64.ActiveCfg = Release|x64
+		{018BA6FB-16C4-4611-B56E-429595BD515D}.RelWithDebInfo|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A97535A0-AD06-4CE2-ABDC-64DCDDBBB28F}
 	EndGlobalSection
 EndGlobal

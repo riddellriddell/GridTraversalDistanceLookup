@@ -118,7 +118,7 @@ tile_coordinate data_grid<TSize, TGridDataType>::convert_index_to_xy(int index)
 template<int TSize, typename TGridDataType>
 inline bool data_grid<TSize, TGridDataType>::is_valid(const tile_coordinate& cord)
 {
-	if (cord.x > width || cord.x < 0 || cord.y > width || cord.y < 0)
+	if (cord.x >= width || cord.x < 0 || cord.y >= width || cord.y < 0)
 	{
 		return false;
 	}
